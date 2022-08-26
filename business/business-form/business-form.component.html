@@ -1,0 +1,53 @@
+<div class="entity-container">
+    <form class="form-container" [formGroup]="form">
+        <mat-card class="card-form container-fluid">
+            <div class="form-input__container">
+                <app-audit *ngIf="!isNew" [properties]="AUDIT_COMPONENT"
+                           [data]="auditDataDt"></app-audit>
+                <div class="card-form__container">
+                    <div class="row mt-4">
+                        <h2 class="card-form__title col-sm-10">{{ (null ? null : isNew ? 'users.title-new' : 'users.title-edit') | translate}}</h2>
+                        <div  class="col-sm-2 toggle-header" >
+                            <mat-slide-toggle
+                                    formControlName="state">{{'button-titles.state' | translate}}
+                            </mat-slide-toggle>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <mat-form-field class="col-md-12 card-form__input">
+                            <mat-label>{{ 'business.form-label.name' | translate}}</mat-label>
+                            <input appWhiteSpaceFormatter type="text" formControlName="name" matInput>
+                            <mat-error *ngIf="form.get('name').errors">{{ 'errors.field-required' | translate}}</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-md-12 card-form__input">
+                            <mat-label>{{ 'business.form-label.address' | translate}}</mat-label>
+                            <input appWhiteSpaceFormatter type="text" formControlName="address" matInput>
+                            <mat-error *ngIf="form.get('name').errors">{{ 'errors.field-required' | translate}}</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-md-6 card-form__input">
+                            <mat-label>{{ 'business.form-label.contact' | translate}}</mat-label>
+                            <input appWhiteSpaceFormatter type="text" formControlName="contact" matInput>
+                            <mat-error *ngIf="form.get('name').errors">{{ 'errors.field-required' | translate}}</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="col-md-6 card-form__input">
+                            <mat-label>{{ 'business.form-label.phones' | translate}}</mat-label>
+                            <input appWhiteSpaceFormatter type="text" formControlName="phones" matInput>
+                            <mat-error *ngIf="form.get('name').errors">{{ 'errors.field-required' | translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+        <div class="button-form">
+            <button [disabled]="form.invalid" mat-raised-button class="submit-button">
+                {{'button-titles.save' | translate}}
+            </button>
+        </div>
+        <div class="add-button">
+            <button matTooltip="lorem"
+                    type="button" (click)="setIsNew()" class="vivify spinIn delay-500 ms-3" mat-fab>
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </form>
+</div>
